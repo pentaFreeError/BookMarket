@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription & Connexion - Vente de livres ENSICAEN</title>
+    <link rel="stylesheet" type="text/css" href="web/styles/login.css">
+    <link rel="stylesheet" type="text/css" href="web/styles/style.css">
+</head>
+<body>
+
+    <header>
+        <section id="site-title"><h1>Vente de livres</h1></section>
+    </header>
+
+    <div class="container">
+        <div class="left">
+            <h2>Inscription</h2>
+            <form action="inscription.php" method="post" id="register-form">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom">
+                <p class="error-message" id="error-nom"></p>
+
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" name="prenom">
+                <p class="error-message" id="error-prenom"></p>
+
+                <label for="adresse">Adresse :</label>
+                <input type="text" id="adresse" name="adresse">
+                <p class="error-message" id="error-adresse"></p>
+
+                <label for="ville">Ville :</label>
+                <input type="text" id="ville" name="ville">
+                <p class="error-message" id="error-ville"></p>
+
+                <label for="pays">Pays :</label>
+                <input type="text" id="pays" name="pays">
+                <p class="error-message" id="error-pays"></p>
+
+                <label for="code_postal">Code Postal :</label>
+                <input type="number" id="code_postal" name="code_postal" required minlength="4" maxlength="10">
+                <p class="error-message" id="error-postal"></p>
+
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email">
+                <p class="error-message" id="error-email"></p>
+
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password">
+                <p class="error-message" id="error-password"></p>
+
+                <button type="button" id="register-btn" class="btn">S'inscrire</button>
+            </form>
+        </div>
+
+        <div class="right">
+            <h2>Connexion</h2>
+            <form action="login.php" method="post" id="login-form">
+                <label for="login-email">Email :</label>
+                <input type="email" id="login-email" name="email">
+                <p class="error-message" id="error-login-email"></p>
+
+                <label for="login-password">Mot de passe :</label>
+                <input type="password" id="login-password" name="password">
+                <p class="error-message" id="error-login-password"></p>
+
+                <button type="button" id="login-btn" class="btn">Se connecter</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="web/js/validation.js"></script>
+
+</body>
+</html>
+

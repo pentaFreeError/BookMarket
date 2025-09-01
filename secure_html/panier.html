@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="web/styles/style.css"> 
+    <title>Mon Panier</title>
+    <style>
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            margin: 0 auto; 
+            margin-top: 30px;
+        }
+
+        th, td {
+            padding: 10px; 
+        }
+        
+        .btn {
+            background-color: #007BFF; 
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 25px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            margin-top: auto;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .container h3 {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        function vider_panier() {
+            fetch("vider_panier.php", { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        alert("Le panier a été vidé");
+                        location.reload(); 
+                    } else {
+                        alert("Erreur lors de la suppression du panier");
+                    }
+                })
+                .catch(error => console.error("Erreur:", error));
+        }
+
+        function commander() {
+            fetch("commander.php", { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        alert("Commande effectuée avec succès");
+                        location.reload(); 
+                    } else {
+                        alert("Erreur lors de la commande");
+                    }
+                })
+                .catch(error => console.error("Erreur:", error));
+        }
+
+    </script>
+</head>
+
+<header>
+    <section id="visit-count">&nbsp;&nbsp;Nombre de visites: <?php echo $counter?> </section>
+    <section id="site-title"><h1>Mon panier</h1></section>
+    <section id="user-info">
+        <p>Bienvenue <?php echo $nom;?> <?php echo $prenom;?></p>
+        <p><a href="panier.php" style="color: white;">Consulter le panier</a></p>
+        <p><a href="logout.php" style="color: white;">Quitter</a></p>
+    </section>
+</header>
+
+<body>
+    <table>
+        <tr>
+            <th>Ouvrage</th>
+            <th>Éditeur</th>
+            <th>Prix Unitaire (€)</th>
+            <th>Quantité</th>
+            <th>Total (€)</th>
+        </tr>
+        <?php 
+        $totalPrix = 0;
+        foreach ($articles as $article): 
+            $totalPrix += $article['prix_unitaire'] * $article['quantite'];
+        ?>
+        <tr>
+            <td><?= htmlspecialchars($article['ouvrage_nom']) ?></td>
+            <td><?= htmlspecialchars($article['editeur_nom']) ?></td>
+            <td><?= number_format($article['prix_unitaire'], 2) ?></td>
+            <td><?= htmlspecialchars($article['quantite']) ?></td>
+            <td><?= number_format($article['prix_unitaire'] * $article['quantite'], 2) ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <div class="container">
+        <h3>Total du panier : <?= number_format($totalPrix, 2) ?> €</h3>
+        <button class="btn" onclick="commander()">Commander</button>
+        <a href="#" class="btn" onclick="vider_panier()">Vider le panier</a>
+    </div>
+
+    <footer>
+        <div class="button-container">
+            <a href="accueil.php" class="btn">Fermer le panier</a>
+        </div>
+    </footer>
+</body>
+</html>

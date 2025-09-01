@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vente de livres</title>
+    <link rel="stylesheet" href="web/styles/style.css"> 
+    <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
+</head>
+
+<body>
+
+    <header>
+        <section id="visit-count">Nombre de visites: <?php echo $counter?> </section>
+        <section id="site-title"><h1>Vente de livres</h1></section>
+        <section id="user-info">
+            <p>Bienvenue <?php echo $nom?> <?php echo $prenom?></p>
+            <p><a href="panier.php" style="color: white;">Consulter le panier</a></p>
+            <p><a href="logout.php" style="color: white;">Quitter</a></p>
+        </section>
+    </header>
+
+    <main>
+        <nav>
+            <h3>Recherche</h3>
+            <input type="text" id="search-authors" class="search-box" placeholder="Rechercher un auteur">
+            <input type="text" id="search-books" class="search-box" placeholder="Rechercher un ouvrage">
+        </nav>
+
+        <section class="content">
+
+            <p>Bienvenue sur le site de la bibliothèque virtuelle.</p>
+            <div id="results-authors">Résultats des auteurs...</div>
+            <div id="results-books">Résultats des ouvrages...</div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 - Kalash Abdulaziz</p>
+    </footer>
+
+    <script src="web/js/author.js"></script>
+</body>
+</html>
